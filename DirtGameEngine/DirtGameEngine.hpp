@@ -4,6 +4,7 @@
 #define DGM_FIXED 0x0101
 #define DGM_FREE 0x0102
 #include "Keyboard.h"
+#include "dgmFont.hpp"
 #include <glm.hpp>
 #include <GL/glew.h>
 
@@ -13,7 +14,7 @@ namespace dgm{
 //defines window properties
 struct WindowSettingsStruct {
 		int majorVer = 4;
-		int minorVer = 2;	
+		int minorVer = 3;	
 		int windowState = DGM_FIXED;
 		bool fullscreen = false;
 		glm::vec2 screenSize = { 600, 300 };
@@ -26,7 +27,8 @@ struct WindowSettingsStruct {
 //defines scene settings
 struct SceneSettingsStruct{
 	bool Depth = 0;
-};struct EngineSettingsStruct{
+};
+struct EngineSettingsStruct{
 	bool EnableDeltaTime = 0;
 	glm::vec2 canvasSize = {100,100};
 };
@@ -52,9 +54,13 @@ extern long double deltaT;
 	//handles keyboard TODO
 	void keyboard(unsigned char c, int x, int y);
 	//Draws a rectangle to the screen according to given values TODO
-	void  Rectangle(float* x, float* y, float* w, float* h);
+	void  Rectangle();
 
-	void Cuboid();
+	void drawShapes();
+	//void clearShapes
+	//might add object ids
+	//maybe objects with ids for player , enemies etc
+	
 
 	// TODO
 	void drawVertex3d(float* vertices);

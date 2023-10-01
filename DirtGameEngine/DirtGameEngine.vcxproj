@@ -131,12 +131,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="dgmFont.cpp" />
     <ClCompile Include="DirtGameEngine.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collision.hpp" />
+    <ClInclude Include="dgmFont.hpp" />
     <ClInclude Include="DirtGameEngine.hpp" />
     <ClInclude Include="Keyboard.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertextshader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

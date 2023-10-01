@@ -3,6 +3,7 @@
 #include <iostream>
 
 	void draw() {
+	/*
 		float vertices[12] = {
 			.0 ,.0 , .1,
 			.20,.90, .2,
@@ -11,12 +12,9 @@
 		};
 
 	dgm::drawVertex3d(vertices);
-	
+	*/
+		dgm::drawShapes();
 	}
-
-
-
-
 
 
 int main() {
@@ -29,12 +27,12 @@ int main() {
 	dgm::WindowSettings.bgColor = { .3, .5, .3, 1.f };
 	dgm::EngineSettings.canvasSize = { 10,10 };
 	dgm::initWindow();
-	dgm::renderU(draw);
-
+	//dgm::renderU(draw);
+	dgm::Rectangle();
+	
 	//doesnt work
 	//does work
-	//dgm::renderF(draw);
-	
+	dgm::renderU(draw);
 
 	dgm::Loop();
 	//return EXIT_SUCCESS;

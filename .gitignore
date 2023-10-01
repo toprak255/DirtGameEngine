@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DirtGameEngine/x64/Release/DirtGameEngine.exe.recipe
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
