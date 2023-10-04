@@ -13,19 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{678141be-37eb-4627-963f-7646bc9f8b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{f668c884-972a-47f3-acd4-bd5e20781185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{92bed221-52e1-4552-bfe7-84e0ad191c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shapes">
+      <UniqueIdentifier>{9387ad14-68fe-41c2-b5f2-c685cae808da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Types">
+      <UniqueIdentifier>{5435563f-1474-40d1-a0e8-61491ef4866e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="Example.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DirtGameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dgmFont.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Window.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="dgmFont.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes.cpp">
+      <Filter>Shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,11 +56,17 @@
     <ClInclude Include="Keyboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dgmFont.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Collision.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="dgmFont.hpp">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.hpp">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes.hpp">
+      <Filter>Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

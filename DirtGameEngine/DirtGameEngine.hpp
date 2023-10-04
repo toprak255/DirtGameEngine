@@ -7,6 +7,8 @@
 #include "dgmFont.hpp"
 #include <glm.hpp>
 #include <GL/glew.h>
+#include "Types.hpp"
+
 
 namespace dgm{
 

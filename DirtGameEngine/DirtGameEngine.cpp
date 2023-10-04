@@ -13,9 +13,6 @@
 
 
 
-int argc = 0;
-char** argv = nullptr;
-
 std::vector<std::vector<vec2>> shapes;
 long double dgm::deltaT = 0.0;
 
@@ -26,8 +23,9 @@ dgm::EngineSettingsStruct dgm::EngineSettings;
 auto previousTime = std::chrono::high_resolution_clock::now();
 
 void placeHolder(void) {};
-GLuint program;
 /*
+GLuint program;
+
 void shader() {
 	// Create a program object
 	GLuint program = glCreateProgram();
@@ -119,47 +117,6 @@ void main() {
 
 }
 */
-void dgm::initWindow() {
-	if (SceneSettings.Depth) {
-		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-		glEnable(GL_DEPTH_TEST);
-	}
-	else {
-		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-	}
-	glutInit(&argc, argv);
-	glutInitContextVersion(WindowSettings.majorVer, WindowSettings.minorVer);
-	glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
-	glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
-	if (WindowSettings.fullscreen == true) {
-		SetProcessDPIAware();
-		glutInitWindowSize(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
-		glutCreateWindow(WindowSettings.title);
-		glutFullScreen();
-	}
-	else {
-		glutInitWindowSize(WindowSettings.screenSize.x, WindowSettings.screenSize.y);
-		glutCreateWindow(WindowSettings.title);
-	}
-	GLenum glewInitResult = glewInit();
-	if (glewInitResult != GLEW_OK) {
-		std::cerr << glewGetErrorString(glewInitResult) << std::endl;
-	}
-	//glViewport(0, EngineSettings.canvasSize.x, 0, EngineSettings.canvasSize.y);
-	//glViewport(0, 0, WindowSettings.screenSize.x, WindowSettings.screenSize.y);
-	//gluOrtho2D(0, EngineSettings.canvasSize.x, 0, EngineSettings.canvasSize.y);
-	glEnable(GL_TEXTURE_2D);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glLoadIdentity();
-	//shader();
-
-
-
-}
-
 void dgm::Rectangle() {
 
 	std::vector<vec2> vertices1 = {
@@ -216,55 +173,6 @@ void dgm::drawShapes() {
 	}
 	glutSwapBuffers();
 }
-void dgm::drawVertex3d(float* vertices) {
-	
-	// Vertex data for the first set of vertices
-	
-	GLuint vbo1;  // Vertex Buffer Object for the first set of vertices
-	glGenBuffers(1, &vbo1);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo1);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 12 * 3, vertices, GL_STATIC_DRAW);
-
-
-	/////////////////////////////////////////////////////////////////////////
-
-	GLuint vao1;  // Vertex Array Object for the first set of vertices
-	glGenVertexArrays(1, &vao1);
-	glBindVertexArray(vao1);
-
-	// Configure the attribute layout for the first set of vertices
-	glBindBuffer(GL_ARRAY_BUFFER, vbo1);
-	glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(0, 3, GL_INT, GL_FALSE, 3 * sizeof(int), (void*)0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
-	//////////////////////////////////////////////////////////////////
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	glClearColor(dgm::WindowSettings.bgColor.r, dgm::WindowSettings.bgColor.g, dgm::WindowSettings.bgColor.b, dgm::WindowSettings.bgColor.a);
-
-
-	// Use the shader program if you have one
-	//glUseProgram(shaderProgram);
-
-	// Render the first set of vertices
-	glBindVertexArray(vao1);
-	glColor4ubv(dgm::WindowSettings.Color);
-	glDrawArrays(GL_POLYGON, 0, 4);  // Draw the first set of vertices
-	// Unbind the vertex arrays
-	glBindVertexArray(0);
-
-	glutSwapBuffers();
-	
-	GLenum error = glGetError();
-	if (error != GL_NO_ERROR) {
-		// Print or log the error here
-		std::cerr << "OpenGL Error: " << error << std::endl;
-	}
-
-}
-
 
 void funcDeltaTime(){
 	auto currentTime = std::chrono::high_resolution_clock::now();
@@ -275,6 +183,7 @@ void funcDeltaTime(){
 	//std::cout << "Fps: " << 1 / dgm::deltaT << std::endl;
 }
 
+//gets called at every update
 void dgm::renderU(void(*func)(void)) {
 	if (func != nullptr) {
 	drawShapes();
@@ -285,7 +194,7 @@ void dgm::renderU(void(*func)(void)) {
 	}
 
 }
-//gets called every frame
+//gets called every frame ,better to use renderU since every frame an update is called
 void dgm::renderF(void(*func)(void)) {
 	if (func != nullptr); {
 		glutIdleFunc(func); 
@@ -318,13 +227,12 @@ void dgm::Close() {
 	delete[] WindowSettings.Color;
 }
 
-//function pointer allows user to call a function of their choice on demand
+//main loop, function pointer allows user to call a function of their choice
 void dgm::Loop(void(*func)(void)) {
 	//glOrtho2(EngineSettings.canvasSize.);
 	//shader();
 	glutReshapeFunc(reshape);
-	glutKeyboardFunc(keebFunc);
-	glutKeyboardFunc(keebFunc);
+	//glutKeyboardFunc(keebFunc);
 	glutSpecialFunc(specialFunc);
 
 	//passed function is called here

@@ -134,13 +134,17 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="dgmFont.cpp" />
     <ClCompile Include="DirtGameEngine.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Example.cpp" />
+    <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.hpp" />
     <ClInclude Include="dgmFont.hpp" />
     <ClInclude Include="DirtGameEngine.hpp" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Shapes.hpp" />
+    <ClInclude Include="Types.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vertextshader.glsl" />
