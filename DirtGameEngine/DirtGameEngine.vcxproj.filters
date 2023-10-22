@@ -10,6 +10,15 @@
     <Filter Include="Test">
       <UniqueIdentifier>{f0cb3e08-3d39-4035-a23a-8c456226763b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{0ec100e9-1b40-4638-a442-39c2e5c43477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Types">
+      <UniqueIdentifier>{57c72965-45cc-4259-a0f7-a8537571aab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screen">
+      <UniqueIdentifier>{abfc584e-2306-4d16-a159-10a22693f6c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirtGameEngine.cpp">
@@ -18,11 +27,14 @@
     <ClCompile Include="ErrorHandling.cpp">
       <Filter>uwu</Filter>
     </ClCompile>
-    <ClCompile Include="Types.cpp">
-      <Filter>uwu</Filter>
-    </ClCompile>
     <ClCompile Include="Example.cpp">
       <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Types.cpp">
+      <Filter>Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,8 +44,11 @@
     <ClInclude Include="ErrorHandling.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Entity.hpp">
+      <Filter>Entity</Filter>
+    </ClInclude>
     <ClInclude Include="Types.hpp">
-      <Filter>Headers</Filter>
+      <Filter>Types</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -39,3 +39,16 @@ int dgm::renderLoop() {
 	}
 	return 0;
 }
+
+
+void dgm::getScreenSize(float *x, float *y) {
+	GLFWmonitor* primary = glfwGetPrimaryMonitor();
+	float mx, my;
+	glfwGetMonitorContentScale(primary ,&mx, &my);
+	int count;
+	const GLFWvidmode* mode = glfwGetVideoMode(primary);
+	int window_width = mode->width;
+	int window_height = mode->height;
+	std::cout << "Window Size: " << window_width << " / " << window_height << "\n" << "Dpi ratio: " << mx << " / " << my << std::endl;
+
+}

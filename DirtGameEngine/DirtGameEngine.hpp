@@ -9,6 +9,7 @@ namespace dgm {
 	//delta time, gets updated every frame
 	extern long double deltaT;
 
+	void getScreenSize(float *x,float *y);
 
 	//Initializes window with given parameters
 	//Check dgm::windowSettings for more
