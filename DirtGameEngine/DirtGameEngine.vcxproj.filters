@@ -10,14 +10,11 @@
     <Filter Include="Test">
       <UniqueIdentifier>{f0cb3e08-3d39-4035-a23a-8c456226763b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entity">
-      <UniqueIdentifier>{0ec100e9-1b40-4638-a442-39c2e5c43477}</UniqueIdentifier>
+    <Filter Include="Scene2D">
+      <UniqueIdentifier>{1fe383af-dbf4-483c-97af-5b27a69c20fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Types">
-      <UniqueIdentifier>{57c72965-45cc-4259-a0f7-a8537571aab3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Screen">
-      <UniqueIdentifier>{abfc584e-2306-4d16-a159-10a22693f6c8}</UniqueIdentifier>
+    <Filter Include="Window">
+      <UniqueIdentifier>{d0df38ba-7dc6-4460-93d8-1a64eb349784}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,11 +27,14 @@
     <ClCompile Include="Example.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Entity</Filter>
+    <ClCompile Include="..\..\..\..\..\glad\src\glad.c">
+      <Filter>uwu</Filter>
     </ClCompile>
-    <ClCompile Include="Types.cpp">
-      <Filter>Types</Filter>
+    <ClCompile Include="Scene2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,11 +44,11 @@
     <ClInclude Include="ErrorHandling.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.hpp">
-      <Filter>Entity</Filter>
+    <ClInclude Include="Scene2D.hpp">
+      <Filter>Scene2D</Filter>
     </ClInclude>
-    <ClInclude Include="Types.hpp">
-      <Filter>Types</Filter>
+    <ClInclude Include="Window.hpp">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

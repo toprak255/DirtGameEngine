@@ -1,20 +1,27 @@
 //DirtGameEngine.hpp
 #pragma once
-#include <glm.hpp>
-
+#include <glm/glm.hpp>
+#include "Window.hpp"
+#include "Scene2D.hpp"
 namespace dgm {
 
 
 
 	//delta time, gets updated every frame
 	extern long double deltaT;
+	//void createEntity(int id, int* func = NULL, std::vector< glm::vec2>* vertices, int image, bool collision = true);
+	//void createEntity(int id=NULL, void(*func)(void) = nullptr, int image=NULL, bool collision = true);
 
-	void getScreenSize(float *x,float *y);
+	void getScreenSize(int *x,int *y);
+
+	void setCanvasSize(int x,int y);
 
 	//Initializes window with given parameters
 	//Check dgm::windowSettings for more
 	int initWindow();
 
+	void createScene();
+	void drawScene();
 	//used to load images TODO
 	void loadImg();
 	//Renders at updates
@@ -26,12 +33,14 @@ namespace dgm {
 	//Draws a rectangle to the screen according to given values TODO
 	void  Rectangle();
 
-	void drawShapes();
+	void drawScene(Scene2D* scene);
+
+	//void drawShapes();
 	//void clearShapes
 	//might add object ids
 	//maybe objects with ids for player , enemies etc
 
-	int renderLoop();
+	void renderLoop(void(*func)(void) = nullptr);
 	// TODO
 	void drawVertex3d(float* vertices);
 	void drawVertex3f(float* vertices[]);
@@ -39,5 +48,5 @@ namespace dgm {
 	void Close();
 
 	//Starts the mainloop for program to run
-	void Loop(void(*func)(void) = nullptr);
+//	void Loop(void(*func)(void) = nullptr);
 }
