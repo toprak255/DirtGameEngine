@@ -16,6 +16,9 @@
     <Filter Include="Window">
       <UniqueIdentifier>{d0df38ba-7dc6-4460-93d8-1a64eb349784}</UniqueIdentifier>
     </Filter>
+    <Filter Include="damned file">
+      <UniqueIdentifier>{a8412f86-ea2d-46bf-b67f-e0e4a94c7fcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirtGameEngine.cpp">
@@ -27,14 +30,14 @@
     <ClCompile Include="Example.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\glad\src\glad.c">
-      <Filter>uwu</Filter>
-    </ClCompile>
     <ClCompile Include="Scene2D.cpp">
       <Filter>Scene2D</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="external_dependencies\src\glad.c">
+      <Filter>damned file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

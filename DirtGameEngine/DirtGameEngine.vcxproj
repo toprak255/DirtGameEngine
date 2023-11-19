@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\glad\src\glad.c" />
     <ClCompile Include="DirtGameEngine.cpp" />
     <ClCompile Include="ErrorHandling.cpp" />
     <ClCompile Include="Example.cpp" />
+    <ClCompile Include="external_dependencies\src\glad.c" />
     <ClCompile Include="Scene2D.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
