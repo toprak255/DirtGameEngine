@@ -5,6 +5,9 @@
 #include <glm/glm.hpp>
 
 namespace dgm {
+//add button & entity class
+//create a view matrix and add that to button
+
     class Shape2D {
     public:
         //Shape2D(std::vector<float>* vecs) : vecs(vecs) {}
