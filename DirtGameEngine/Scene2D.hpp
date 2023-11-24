@@ -1,39 +1,44 @@
-//Scene2D.hpp
+// Scene2D.hpp
 #pragma once
 
 #include <vector>
 #include <glm/glm.hpp>
 
 namespace dgm {
-//add button & entity class
-//create a view matrix and add that to button
-
-    class Shape2D {
+    //Template class for scene objects
+    class SceneObject2D {
     public:
-        //Shape2D(std::vector<float>* vecs) : vecs(vecs) {}
         std::vector<float> vecs;
-        glm::vec4 color;
+        virtual ~SceneObject2D();
 
-        ~Shape2D();
     private:
-        std::vector<Shape2D*> children;
+        std::vector<SceneObject2D*> children;
+    };
+
+
+
+    class Entity2D : public SceneObject2D {
+    public:
+        void move(float x, float y);
+
+    };
+    class Shape2D : public SceneObject2D {
 
     };
 
+//2D Scene function
     class Scene2D {
     public:
-        std::vector<Shape2D*> objects;
-
-        //void add(Shape2D* child);
-        Shape2D* newShape(std::vector<float>* vertices={});
-        //void drawScene() {};
-        void remove(Shape2D* child);
-
+        std::vector<SceneObject2D*> objects;
+        Shape2D* newShape(std::vector<float>* vertices = {});
+        Entity2D* newEntity(std::vector<float>* vertices = {});
+        void remove(SceneObject2D* child);
         ~Scene2D();
-    private:
-
     };
-    //
+
+/*function definitions*/
+
+//function for creating a new scene
     Scene2D* newScene();
 
-}
+}//namespace end

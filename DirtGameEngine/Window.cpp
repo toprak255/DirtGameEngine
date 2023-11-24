@@ -9,3 +9,4 @@ GLFWmonitor* dgm::monitor;
 
 glm::vec2 dgm::WindowSettings::screenSize = { 600, 600 };
 char dgm::WindowSettings::title[40] = "DGM Demo Window";
+bool dgm::WindowSettings::vsync = true;

@@ -18,5 +18,6 @@ namespace dgm {
     namespace WindowSettings {
         extern glm::vec2 screenSize;
         extern char title[40];
+        extern bool vsync;
     };
 }

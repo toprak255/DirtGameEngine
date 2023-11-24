@@ -105,7 +105,9 @@ int dgm::initWindow() {
         std::cerr << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
-    glfwSwapInterval(1);
+    if (dgm::WindowSettings::vsync) {
+        glfwSwapInterval(1);
+    }
     //
     glClearColor(.7f, .6f, .2f, .0f);
     glGenBuffers(1, &vbo1);
