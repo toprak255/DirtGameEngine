@@ -10,7 +10,7 @@ namespace dgm {
     public:
         std::vector<float> vecs;
         virtual ~SceneObject2D();
-
+        unsigned int texture;
     private:
         std::vector<SceneObject2D*> children;
     };
@@ -33,6 +33,7 @@ namespace dgm {
 //2D Scene function
     class Scene2D {
     public:
+        glm::vec3 background = { 0,0,0 };
         std::vector<SceneObject2D*> objects;
         std::vector<SceneObject2D*> entities;
         Shape2D* newShape(std::vector<float>* vertices = {});

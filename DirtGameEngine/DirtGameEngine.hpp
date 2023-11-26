@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include "Window.hpp"
 #include "Scene2D.hpp"
+#include "Textures.hpp"
 namespace dgm {
 
 
@@ -41,8 +42,9 @@ namespace dgm {
 	//maybe objects with ids for player , enemies etc
 	void mainLoop(void(*func)(void) = nullptr);
 	// TODO
-	void drawVertex3d(float* vertices);
-	void drawVertex3f(float* vertices[]);
+	//void drawVertex3d(float* vertices);
+	//void drawVertex3f(float* vertices[]);
+
 	//Quits the main loop and destroys dynamically allocated elements
 	void Close();
 

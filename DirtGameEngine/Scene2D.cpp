@@ -35,14 +35,11 @@ void dgm::removeEntity(Scene2D* scene, SceneObject2D* child) {
 		delete child;
 	}
 }
-void dgm::Entity2D::move(float x, float y){
-	for (int i = 0; i < vecs.size(); i++) {
-		if (i % 2 == 0) {
-			vecs[i] += x;
-		}
-		else {
-			vecs[i] += y;
-		}
+void dgm::Entity2D::move(float deltaX, float deltaY) {
+	// Move each vertex's position
+	for (int i = 0; i < vecs.size(); i += 4) {
+		vecs[i] += deltaX;      
+		vecs[i + 1] += deltaY;  
 	}
 }
 

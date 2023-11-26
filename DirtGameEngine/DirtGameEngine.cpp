@@ -29,41 +29,38 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 }
 
 
+// Vertex Shader
 const char* vertexShaderSource = R"(
-
 #version 430 core
 
 layout(location = 0) in vec2 aPos;
-out vec4 vertexColor;
+layout(location = 1) in vec2 aTexCoord;
+
+out vec2 TexCoord;
+
 uniform mat4 projection;
 
 void main() {
-    // Apply the projection matrix first
-    vec4 transformedPos = projection * vec4(aPos, 0.0, 1.0);
-    
-    // Mirror the object horizontally by negating the x-coordinate
-    //transformedPos.x = -transformedPos.x;
-
-    // Assign the transformed position to gl_Position
-    gl_Position = transformedPos;
-    vertexColor = vec4(0.5, 0.0, 0.0, 1.0);
+    gl_Position = projection * vec4(aPos, 0.0, 1.0);
+    TexCoord = aTexCoord;
 }
-
-
 )";
 
+// Fragment Shader
 const char* fragmentShaderSource = R"(
 #version 430 core
+
 out vec4 FragColor;
-  
-in vec4 vertexColor; // the input variable from the vertex shader (same name and same type)  
 
-void main()
-{
-    FragColor = vertexColor;
-} 
+in vec2 TexCoord;
 
+uniform sampler2D texture1;
+
+void main() {
+    FragColor = texture(texture1, TexCoord);
+}
 )";
+
 
 int dgm::initWindow() {
     if (!glfwInit()) {
@@ -109,7 +106,7 @@ int dgm::initWindow() {
         glfwSwapInterval(1);
     }
     //
-    glClearColor(.7f, .6f, .2f, .0f);
+    glClearColor(.2f, .2f, .2f, .0f);
     glGenBuffers(1, &vbo1);
     glGenVertexArrays(1, &vao1);
 
@@ -171,48 +168,44 @@ int dgm::initWindow() {
     
     //change this shit below
     glm::mat4 projection = glm::ortho(.0f, 1.0f, 0.0f, 1.0f * 1080 / 1920, -1.0f, 1.0f);
-    //glm::mat4 projection = glm::ortho(.0f, 1.0f, 0.0f, 1.0f * screenHeight / screenWidth, -1.0f, 1.0f);
-   //glm::mat4 projection = glm::ortho(0.0f, 1.0f, 0.0f, 1.0f, -1.0f, 1.0f);
   
 
     glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-    glBindVertexArray(vao1);
   //  
+
+        glBindVertexArray(vao1);
+        //
         glBindBuffer(GL_ARRAY_BUFFER, vbo1);
+
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
         glBindVertexArray(vao1);
         glBindBuffer(GL_ARRAY_BUFFER, vbo1);
+ 
  //
     return 0;
 }
 
 void dgm::drawScene(Scene2D* scene) {
-
     for (const auto& object : scene->objects) {
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object->vecs.size() , object->vecs.data(), GL_STATIC_DRAW);
+        glBindTexture(GL_TEXTURE_2D, object->texture);
+        glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
 
-        glDrawArrays(GL_TRIANGLE_FAN, 0, object->vecs.size()/2);
-       // glUniform4f(shapeColorLocation, object->color.r, object->color.g, object->color.b, object->color.a);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object->vecs.size(), object->vecs.data(), GL_STATIC_DRAW);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, object->vecs.size() / 2);
     }
+
     for (const auto& entity : scene->entities) {
+        glBindTexture(GL_TEXTURE_2D, entity->texture);
+        glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
+
         glBufferData(GL_ARRAY_BUFFER, sizeof(float) * entity->vecs.size(), entity->vecs.data(), GL_STATIC_DRAW);
-
         glDrawArrays(GL_TRIANGLE_FAN, 0, entity->vecs.size() / 2);
-        // glUniform4f(shapeColorLocation, object->color.r, object->color.g, object->color.b, object->color.a);
     }
-
 }
-/*
-void dgm::entitything(Scene2D* scene) {
-    for (const auto& object : scene->objects) {
-        if (dynamic_cast<Entity2D*>(object) != nullptr) {
-            object.
-        }
-    }
-
-}*/
 
 
 
@@ -245,6 +238,10 @@ void dgm::mainLoop(void(*func)(void)) {
 }
 
 void dgm::Close() {
-
+    glDeleteVertexArrays(1, &vao1);
+    glDeleteBuffers(1, &vbo1);
+    //glDeleteTextures(1, &texture); 
+    //loop through textures to delete them
+    glDeleteProgram(shader);
     glfwTerminate();
 }
