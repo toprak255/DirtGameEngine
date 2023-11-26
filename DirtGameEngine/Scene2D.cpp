@@ -1,25 +1,42 @@
 #include "Scene2D.hpp"
 
+dgm::Shape2D* dgm::newShape(dgm::Scene2D* scene, std::vector<float>* vertices) {
+	dgm::Shape2D* child = new dgm::Shape2D();
 
-dgm::Shape2D* dgm::Scene2D::newShape(std::vector<float>* vertices) {
-	Shape2D* child = new Shape2D;
-	if (!vertices->empty()) {
+	if (vertices != nullptr) {
 		child->vecs = *vertices;
 	}
-	objects.push_back(child);
-	return child;}
 
+	scene->objects.push_back(child);
+	return child;
+}
 
-dgm::Entity2D* dgm::Scene2D::newEntity(std::vector<float>* vertices) {
-	Entity2D* child = new Entity2D;
-	if (!vertices->empty()) {
-		child->vecs = *vertices;
+dgm::Entity2D* dgm::newEntity(dgm::Scene2D* scene, std::vector<float>* vertices) {
+	dgm::Entity2D* child = new dgm::Entity2D();
+
+	if (vertices != nullptr) {
+		child->vecs = *vertices;}	
+
+	scene->entities.push_back(child);
+	return child;
+}
+
+void dgm::removeObject(Scene2D* scene, SceneObject2D* child) {
+	auto it = std::find(scene->objects.begin(), scene->objects.end(), child);
+	if (it != scene->objects.end()) {
+		scene->objects.erase(it);
+		delete child;
 	}
-	objects.push_back(child);
-	return child;}
-
-void dgm::Entity2D::move(float x, float y) {
-	for (int i=0; i < vecs.size(); i++) {
+}
+void dgm::removeEntity(Scene2D* scene, SceneObject2D* child) {
+	auto it = std::find(scene->entities.begin(), scene->entities.end(), child);
+	if (it != scene->entities.end()) {
+		scene->entities.erase(it);
+		delete child;
+	}
+}
+void dgm::Entity2D::move(float x, float y){
+	for (int i = 0; i < vecs.size(); i++) {
 		if (i % 2 == 0) {
 			vecs[i] += x;
 		}
@@ -28,16 +45,13 @@ void dgm::Entity2D::move(float x, float y) {
 		}
 	}
 }
-void dgm::Scene2D::remove(SceneObject2D* child) {
-	auto it = std::find(objects.begin(), objects.end(), child);
-	if (it != objects.end()) {
-		objects.erase(it);
-		delete child;
-	}
-}
+
 dgm::Scene2D::~Scene2D() {
 	for (const auto& object : objects) {
 		delete object;
+	}
+	for (const auto& entity : entities) {
+		delete entity;
 	}
 }
 dgm::Scene2D* dgm::newScene() {

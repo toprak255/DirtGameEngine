@@ -39,8 +39,7 @@ namespace dgm {
 	//void clearShapes
 	//might add object ids
 	//maybe objects with ids for player , enemies etc
-
-	void renderLoop(void(*func)(void) = nullptr);
+	void mainLoop(void(*func)(void) = nullptr);
 	// TODO
 	void drawVertex3d(float* vertices);
 	void drawVertex3f(float* vertices[]);

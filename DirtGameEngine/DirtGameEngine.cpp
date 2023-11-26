@@ -177,26 +177,42 @@ int dgm::initWindow() {
 
     glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glBindVertexArray(vao1);
-    
+  //  
+        glBindBuffer(GL_ARRAY_BUFFER, vbo1);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+
+        glBindVertexArray(vao1);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo1);
+ //
     return 0;
 }
 
 void dgm::drawScene(Scene2D* scene) {
-    glBindBuffer(GL_ARRAY_BUFFER, vbo1);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
-
-    glBindVertexArray(vao1);
 
     for (const auto& object : scene->objects) {
-        glBindBuffer(GL_ARRAY_BUFFER, vbo1);
         glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object->vecs.size() , object->vecs.data(), GL_STATIC_DRAW);
 
-       // glUniform4f(shapeColorLocation, object->color.r, object->color.g, object->color.b, object->color.a);
         glDrawArrays(GL_TRIANGLE_FAN, 0, object->vecs.size()/2);
+       // glUniform4f(shapeColorLocation, object->color.r, object->color.g, object->color.b, object->color.a);
     }
-}
+    for (const auto& entity : scene->entities) {
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * entity->vecs.size(), entity->vecs.data(), GL_STATIC_DRAW);
 
+        glDrawArrays(GL_TRIANGLE_FAN, 0, entity->vecs.size() / 2);
+        // glUniform4f(shapeColorLocation, object->color.r, object->color.g, object->color.b, object->color.a);
+    }
+
+}
+/*
+void dgm::entitything(Scene2D* scene) {
+    for (const auto& object : scene->objects) {
+        if (dynamic_cast<Entity2D*>(object) != nullptr) {
+            object.
+        }
+    }
+
+}*/
 
 
 
@@ -206,10 +222,10 @@ void dgm::getScreenSize(int* x, int* y) {
     *x = mode->width;
     *y = mode->height;
 }
-
-void dgm::renderLoop(void(*func)(void)) {
+//calls the passed function at every single frame generated
+void dgm::mainLoop(void(*func)(void)) {
         if (func == NULL) {
-            std::cerr << " renderLoop function needs an input " << std::endl;
+            std::cerr << " mainLoop function needs an input " << std::endl;
             glfwTerminate();
         }
     while (!glfwWindowShouldClose(window)) {

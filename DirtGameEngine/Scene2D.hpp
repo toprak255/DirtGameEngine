@@ -19,9 +19,13 @@ namespace dgm {
 
     class Entity2D : public SceneObject2D {
     public:
+        //void (*entityFunction)(void);
         void move(float x, float y);
 
+        //Entity2D(void (*function)(void)) : entityFunction(function) {}
+
     };
+
     class Shape2D : public SceneObject2D {
 
     };
@@ -30,15 +34,22 @@ namespace dgm {
     class Scene2D {
     public:
         std::vector<SceneObject2D*> objects;
+        std::vector<SceneObject2D*> entities;
         Shape2D* newShape(std::vector<float>* vertices = {});
-        Entity2D* newEntity(std::vector<float>* vertices = {});
+        //Entity2D* newEntity(std::vector<float>* vertices = {});
         void remove(SceneObject2D* child);
         ~Scene2D();
     };
 
-/*function definitions*/
 
 //function for creating a new scene
     Scene2D* newScene();
+    // void(*func)(void)
+
+    Entity2D* newEntity(Scene2D* scene, std::vector<float>* vertices = {});
+    Shape2D* newShape(Scene2D* scene, std::vector<float>* vertices = {});
+    void removeObject(Scene2D * scene, SceneObject2D * child);
+    void removeEntity(Scene2D * scene, SceneObject2D * child);
+    
 
 }//namespace end
