@@ -1,26 +1,23 @@
 #include "Scene2D.hpp"
 
-dgm::Shape2D* dgm::newShape(dgm::Scene2D* scene, std::vector<float>* vertices) {
+
+dgm::Shape2D* dgm::newShape(dgm::Scene2D* scene) {
 	dgm::Shape2D* child = new dgm::Shape2D();
-
-	if (vertices != nullptr) {
-		child->vecs = *vertices;
-	}
-
 	scene->objects.push_back(child);
 	return child;
 }
 
-dgm::Entity2D* dgm::newEntity(dgm::Scene2D* scene, std::vector<float>* vertices) {
+dgm::Entity2D* dgm::newEntity(dgm::Scene2D* scene) {
 	dgm::Entity2D* child = new dgm::Entity2D();
-
-	if (vertices != nullptr) {
-		child->vecs = *vertices;}	
-
 	scene->entities.push_back(child);
 	return child;
 }
 
+void dgm::Entity2D::callFunction() {
+	if (entityFunction) {
+		entityFunction();
+	}
+}
 void dgm::removeObject(Scene2D* scene, SceneObject2D* child) {
 	auto it = std::find(scene->objects.begin(), scene->objects.end(), child);
 	if (it != scene->objects.end()) {
@@ -35,8 +32,8 @@ void dgm::removeEntity(Scene2D* scene, SceneObject2D* child) {
 		delete child;
 	}
 }
+// Move each vertex's position
 void dgm::Entity2D::move(float deltaX, float deltaY) {
-	// Move each vertex's position
 	for (int i = 0; i < vecs.size(); i += 4) {
 		vecs[i] += deltaX;      
 		vecs[i + 1] += deltaY;  

@@ -103,7 +103,8 @@ int dgm::initWindow() {
         return -1;
     }
     if (dgm::WindowSettings::vsync) {
-        glfwSwapInterval(1);
+
+       glfwSwapInterval(1);
     }
     //
     glClearColor(.2f, .2f, .2f, .0f);
@@ -190,6 +191,12 @@ int dgm::initWindow() {
 }
 
 void dgm::drawScene(Scene2D* scene) {
+
+    //to do: use triangle strips
+    //strip generator
+    //make shape inputs something proper
+    //compare fps
+    // glMultiDrawArrays noway
     for (const auto& object : scene->objects) {
         glBindTexture(GL_TEXTURE_2D, object->texture);
         glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
@@ -199,6 +206,7 @@ void dgm::drawScene(Scene2D* scene) {
     }
 
     for (const auto& entity : scene->entities) {
+        entity->callFunction();
         glBindTexture(GL_TEXTURE_2D, entity->texture);
         glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
 

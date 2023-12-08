@@ -32,18 +32,24 @@ dgm::Scene2D* root = dgm::newScene();
 
 
 
-dgm::Shape2D* shape = dgm::newShape(root, &shape1);
-dgm::Entity2D* entity2 = dgm::newEntity(root, &shape2);
+dgm::Shape2D* shape = dgm::newShape(root);
+
+dgm::Entity2D* entity2 = dgm::newEntity(root);
 
 void loopFunc() {
 
     //Render the scene
     dgm::drawScene(root);
-    entity2->move(0.001, 0.001);
-
+    //entity2->move(0.001, 0.001);
    
 }
+
 int main() {
+    shape->vecs = shape1;
+    entity2->vecs = shape2;
+    entity2->setFunction([]() {
+        entity2->move(0.001, 0.001); 
+        });
     if (dgm::initWindow() != 0) {return -1;}
     
     //root->remove(entity2);
