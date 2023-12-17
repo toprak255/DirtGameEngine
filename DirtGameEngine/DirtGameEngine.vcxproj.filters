@@ -25,6 +25,12 @@
     <Filter Include="images">
       <UniqueIdentifier>{38817659-8415-4990-8fe3-14058f68536c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Keyboard">
+      <UniqueIdentifier>{06e75442-0725-4360-868d-df9259b45db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene2D\BasicShapes">
+      <UniqueIdentifier>{04f03dad-4cba-4e3a-84c5-269a44583448}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirtGameEngine.cpp">
@@ -48,6 +54,12 @@
     <ClCompile Include="Textures.cpp">
       <Filter>Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="bShapes2D.cpp">
+      <Filter>Scene2D\BasicShapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirtGameEngine.hpp">
@@ -64,6 +76,12 @@
     </ClInclude>
     <ClInclude Include="Textures.hpp">
       <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.hpp">
+      <Filter>Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="bShapes2D.hpp">
+      <Filter>Scene2D\BasicShapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -19,17 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bShapes2D.cpp" />
     <ClCompile Include="DirtGameEngine.cpp" />
     <ClCompile Include="ErrorHandling.cpp" />
     <ClCompile Include="Example.cpp" />
     <ClCompile Include="external_dependencies\src\glad.c" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Scene2D.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bShapes2D.hpp" />
     <ClInclude Include="DirtGameEngine.hpp" />
     <ClInclude Include="ErrorHandling.hpp" />
+    <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="Scene2D.hpp" />
     <ClInclude Include="Textures.hpp" />
     <ClInclude Include="Window.hpp" />

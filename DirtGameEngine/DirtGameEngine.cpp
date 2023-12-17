@@ -22,7 +22,9 @@ auto previousTime = std::chrono::steady_clock::now();
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
-    std::cout << width << " / " << height << std::endl;
+    //std::cout << width << " / " << height << std::endl;
+    dgm::WindowSettings::screenSize.x = width;
+    dgm::WindowSettings::screenSize.y = height;
     glm::mat4 projection = glm::ortho(.0f, 1.0f, 0.0f, 1.0f * height / width, -1.0f, 1.0f);
     //glm::mat4 projection = glm::ortho(.0f, 1.0f* width / height, .0f , 1.0f , -1.0f, 1.0f);
     glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
@@ -201,17 +203,33 @@ void dgm::drawScene(Scene2D* scene) {
         glBindTexture(GL_TEXTURE_2D, object->texture);
         glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object->vecs.size(), object->vecs.data(), GL_STATIC_DRAW);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, object->vecs.size() / 2);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object->shapeCoords.size(), object->shapeCoords.data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * object->textureCoords.size(), object->textureCoords.data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+
+        glDrawArrays(GL_TRIANGLES, 0, object->shapeCoords.size() / 2);
     }
 
     for (const auto& entity : scene->entities) {
-        entity->callFunction();
+        entity->callFunction(); // work on it later on
         glBindTexture(GL_TEXTURE_2D, entity->texture);
         glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * entity->vecs.size(), entity->vecs.data(), GL_STATIC_DRAW);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, entity->vecs.size() / 2);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * entity->shapeCoords.size(), entity->shapeCoords.data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * entity->textureCoords.size(), entity->textureCoords.data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+
+        glDrawArrays(GL_TRIANGLES, 0, entity->shapeCoords.size() / 2);
     }
 }
 

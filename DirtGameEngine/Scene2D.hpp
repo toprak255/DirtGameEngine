@@ -7,19 +7,20 @@
 
 namespace dgm {
     //Template class for scene objects
-    class SceneObject2D {
+    class TemplateObject2D {
     public:
-        std::vector<float> vecs;
-        virtual ~SceneObject2D();
+        std::vector<float> shapeCoords;
+        std::vector<float> textureCoords;
+        virtual ~TemplateObject2D();
         unsigned int texture;
     private:
-        std::vector<SceneObject2D*> children;
+        std::vector<TemplateObject2D*> children;
     };
 
 
 //using FunctionType = std::function<void(void)>;
 
-    class Entity2D : public SceneObject2D {
+    class Entity2D : public TemplateObject2D {
     public:
         //void (*entityFunction)(void);
 
@@ -36,7 +37,7 @@ namespace dgm {
         std::function<void(void)> entityFunction{};
     };
 
-    class Shape2D : public SceneObject2D {
+    class Object2D : public TemplateObject2D {
 
     };
 
@@ -44,12 +45,12 @@ namespace dgm {
     class Scene2D {
     public:
         glm::vec3 background = { 0,0,0 };
-        std::vector<SceneObject2D*> objects;
-        std::vector<Entity2D*> entities;
+        std::vector<TemplateObject2D*> objects;
         //std::vector<SceneObject2D*> entities;
+        std::vector<Entity2D*> entities;
 
         //Entity2D* newEntity(std::vector<float>* vertices = {});
-        void remove(SceneObject2D* child);
+        void remove(TemplateObject2D* child);
         ~Scene2D();
     };
 
@@ -59,9 +60,9 @@ namespace dgm {
     // void(*func)(void)
 
     Entity2D* newEntity(Scene2D* scene);
-    Shape2D* newShape(Scene2D* scene);
-    void removeObject(Scene2D * scene, SceneObject2D * child);
-    void removeEntity(Scene2D * scene, SceneObject2D * child);
+    Object2D* newObject(Scene2D* scene);
+    void removeObject(Scene2D * scene, TemplateObject2D * child);
+    void removeEntity(Scene2D * scene, TemplateObject2D * child);
     
 
 }//namespace end

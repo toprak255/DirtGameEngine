@@ -4,6 +4,7 @@
 #include "Window.hpp"
 #include "Scene2D.hpp"
 #include "Textures.hpp"
+#include "bShapes2D.hpp"
 namespace dgm {
 
 

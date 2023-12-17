@@ -3,12 +3,29 @@
 #include <iostream>
 
 std::vector<float> shape2 = { 
-0.15,0.15,0.5,0.5,
-0.1, 0.1, 0.0f, 0.0f,
-0.1, 0.2, 0.0f, 1.0f,
-0.2 ,0.2, 1.0f, 1.0f,
-0.2 ,0.1, 1.0f, 0.0f,
-0.1, 0.1, 0.0f, 0.0f
+ //triangle fan , not suitable
+/* shape coordinates */ 0.1, 0.1, 
+/* shape coordinates */ 0.1, 0.2, 
+/* shape coordinates */ 0.2 ,0.1, 
+/* shape coordinates */ 0.2 ,0.1, 
+/* shape coordinates */ 0.2 ,0.2, 
+/* shape coordinates */ 0.1, 0.2, 
+};
+std::vector<float> textureC = {
+    //.0f, 0.0f,
+    //.0f, 1.0f,
+    //.0f, 0.0f,
+    //.0f, 0.0f,
+    //.0f, 1.0f,
+    //.0f, 1.0f,
+    //=======
+    //0.1, 0.1,
+    //0.1, 0.2,
+    //0.2 ,0.1,
+    //0.2 ,0.1,
+    //0.2 ,0.2,
+    //0.1, 0.2,
+
 };
 std::vector<float> shape1 = {
     0.45,0.45,0.5,0.5,
@@ -32,7 +49,7 @@ dgm::Scene2D* root = dgm::newScene();
 
 
 
-dgm::Shape2D* shape = dgm::newShape(root);
+dgm::Object2D* shape = dgm::newObject(root);
 
 dgm::Entity2D* entity2 = dgm::newEntity(root);
 
@@ -45,8 +62,10 @@ void loopFunc() {
 }
 
 int main() {
-    shape->vecs = shape1;
-    entity2->vecs = shape2;
+    //shape->shapeCoords = shape1;
+    shape->shapeCoords = dgm::nGon({.5,.5},10, 6);
+    entity2->shapeCoords = shape2;
+    entity2->textureCoords = textureC;
     entity2->setFunction([]() {
         entity2->move(0.001, 0.001); 
         });
@@ -57,7 +76,7 @@ int main() {
     //dgm::WindowSettings::vsync = false; //default value is true
     
     entity2->texture = dgm::LoadTexture("./textures/texture.png");
-
+  
   
     shape->texture=dgm::LoadTexture("./textures/texture.png");
 
