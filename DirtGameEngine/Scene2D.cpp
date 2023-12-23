@@ -1,5 +1,5 @@
 #include "Scene2D.hpp"
-
+#include <iostream>
 
 dgm::Object2D* dgm::newObject(dgm::Scene2D* scene) {
 	dgm::Object2D* child = new dgm::Object2D();
@@ -34,7 +34,7 @@ void dgm::removeEntity(Scene2D* scene, TemplateObject2D* child) {
 }
 // Move each vertex's position
 void dgm::Entity2D::move(float x, float y) {
- 
+
 	}
 
 

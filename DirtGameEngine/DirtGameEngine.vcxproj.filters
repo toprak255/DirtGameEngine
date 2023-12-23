@@ -31,6 +31,12 @@
     <Filter Include="Scene2D\BasicShapes">
       <UniqueIdentifier>{04f03dad-4cba-4e3a-84c5-269a44583448}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene2D\Widgets">
+      <UniqueIdentifier>{8629f771-8545-426a-abb0-66a9d2f5f3b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mouse">
+      <UniqueIdentifier>{9fedb38d-5658-40d3-8d11-db16e98f2721}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirtGameEngine.cpp">
@@ -60,6 +66,12 @@
     <ClCompile Include="bShapes2D.cpp">
       <Filter>Scene2D\BasicShapes</Filter>
     </ClCompile>
+    <ClCompile Include="Widgets.cpp">
+      <Filter>Scene2D\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirtGameEngine.hpp">
@@ -83,5 +95,15 @@
     <ClInclude Include="bShapes2D.hpp">
       <Filter>Scene2D\BasicShapes</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Widgets.hpp">
+      <Filter>Scene2D\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.hpp">
+      <Filter>Mouse</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DirtGameEngine.rc" />
   </ItemGroup>
 </Project>

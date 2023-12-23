@@ -16,6 +16,8 @@ GLuint vao1;
 GLuint vertexShader;
 GLuint fragmentShader;
 GLuint shader;
+GLint cameraPosLoc;
+GLint objectPosLoc;
 long double dgm::deltaT;
 auto previousTime = std::chrono::steady_clock::now();
 
@@ -37,13 +39,16 @@ const char* vertexShaderSource = R"(
 
 layout(location = 0) in vec2 aPos;
 layout(location = 1) in vec2 aTexCoord;
-
 out vec2 TexCoord;
 
+
+
+uniform vec2 objectPosition;
+uniform vec2 cameraPosition;
 uniform mat4 projection;
 
 void main() {
-    gl_Position = projection * vec4(aPos, 0.0, 1.0);
+    gl_Position = projection * vec4(aPos, 0.0, 1.0)+ vec4((cameraPosition), 0.0, 0.0) + vec4((objectPosition), 0.0, 0.0);
     TexCoord = aTexCoord;
 }
 )";
@@ -164,6 +169,8 @@ int dgm::initWindow() {
     glUseProgram(shader);   
 //
     GLint projectionLocation = glGetUniformLocation(shader, "projection");
+    cameraPosLoc = glGetUniformLocation(shader, "cameraPosition");
+    objectPosLoc = glGetUniformLocation(shader, "objectPosition");
     if (projectionLocation == -1) {
         std::cerr << "Uniform projection not found in the shader program." << std::endl;
     }
@@ -200,6 +207,7 @@ void dgm::drawScene(Scene2D* scene) {
     //compare fps
     // glMultiDrawArrays noway
     for (const auto& object : scene->objects) {
+        glUniform2f(objectPosLoc, object->position.x,object->position.y);
         glBindTexture(GL_TEXTURE_2D, object->texture);
         glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
 
@@ -217,6 +225,7 @@ void dgm::drawScene(Scene2D* scene) {
 
     for (const auto& entity : scene->entities) {
         entity->callFunction(); // work on it later on
+        glUniform2f(objectPosLoc, entity->position.x, entity->position.y);
         glBindTexture(GL_TEXTURE_2D, entity->texture);
         glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
 
@@ -232,7 +241,9 @@ void dgm::drawScene(Scene2D* scene) {
         glDrawArrays(GL_TRIANGLES, 0, entity->shapeCoords.size() / 2);
     }
 }
-
+void dgm::updateCamPos(dgm::Scene2D* scene) {
+    glUniform2f(cameraPosLoc, scene->camPos.x,scene->camPos.y);
+}
 
 
 void dgm::getScreenSize(int* x, int* y) {

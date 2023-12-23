@@ -3,7 +3,13 @@
 #include <math.h>
 #include "Window.hpp"
 
-std::vector<float> dgm::nGon(glm::vec2 center, float radius, int cornerCount)
+
+
+std::vector<float> dgm::Shape2D::Rectangle(glm::vec2 bottomLeft, glm::vec2 size) {
+
+}
+
+std::vector<float> dgm::Shape2D::nGon(glm::vec2 center, float radius, int cornerCount)
 {
 	std::vector<float> vecs;
 	if (cornerCount < 3) {

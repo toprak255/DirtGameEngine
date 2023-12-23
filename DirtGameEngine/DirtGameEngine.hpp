@@ -37,6 +37,7 @@ namespace dgm {
 
 	void drawScene(Scene2D* scene);
 
+	void updateCamPos(Scene2D* scene);
 	//void drawShapes();
 	//void clearShapes
 	//might add object ids

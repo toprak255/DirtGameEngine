@@ -9,12 +9,14 @@ namespace dgm {
     //Template class for scene objects
     class TemplateObject2D {
     public:
+        glm::vec2 position;
+        float rotation;
+        float scale;
         std::vector<float> shapeCoords;
         std::vector<float> textureCoords;
         virtual ~TemplateObject2D();
         unsigned int texture;
-    private:
-        std::vector<TemplateObject2D*> children;
+
     };
 
 
@@ -44,6 +46,7 @@ namespace dgm {
 //2D Scene function
     class Scene2D {
     public:
+        glm::vec2 camPos = { 0,0 };
         glm::vec3 background = { 0,0,0 };
         std::vector<TemplateObject2D*> objects;
         //std::vector<SceneObject2D*> entities;

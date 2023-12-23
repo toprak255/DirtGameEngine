@@ -4,7 +4,9 @@
 #include <vector>
 
 namespace dgm {
+	namespace Shape2D {
+		std::vector<float> nGon(glm::vec2 center, float radius, int cornerCount);
+		std::vector<float> Rectangle(glm::vec2 bottomLeft, glm::vec2 size);
 
-	std::vector<float> nGon(glm::vec2 center,float radius,int cornerCount);
-
-}
+	}//Shape2D namespace end
+}//dgm namespace end

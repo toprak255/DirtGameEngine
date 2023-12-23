@@ -25,8 +25,10 @@
     <ClCompile Include="Example.cpp" />
     <ClCompile Include="external_dependencies\src\glad.c" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Scene2D.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Widgets.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,9 +36,15 @@
     <ClInclude Include="DirtGameEngine.hpp" />
     <ClInclude Include="ErrorHandling.hpp" />
     <ClInclude Include="Keyboard.hpp" />
+    <ClInclude Include="Mouse.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene2D.hpp" />
     <ClInclude Include="Textures.hpp" />
+    <ClInclude Include="Widgets.hpp" />
     <ClInclude Include="Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DirtGameEngine.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

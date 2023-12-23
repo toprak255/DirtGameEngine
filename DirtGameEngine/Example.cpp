@@ -57,13 +57,17 @@ void loopFunc() {
 
     //Render the scene
     dgm::drawScene(root);
-    //entity2->move(0.001, 0.001);
+    
+    entity2->position.x += 0.001f;
+
+    //root->camPos.x += 0.01f;
+    //dgm::updateCamPos(root);
    
 }
 
 int main() {
     //shape->shapeCoords = shape1;
-    shape->shapeCoords = dgm::nGon({.5,.5},10, 6);
+    shape->shapeCoords = dgm::Shape2D::nGon({.5,.5},10, 6);
     entity2->shapeCoords = shape2;
     entity2->textureCoords = textureC;
     entity2->setFunction([]() {
